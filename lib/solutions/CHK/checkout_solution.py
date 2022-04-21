@@ -60,7 +60,14 @@ def checkout(skus):
                 continue
 
             sku_offers = offers[sku]
+
+            for c in offers:
+                for offer in offers[c]:
+                    if offer.sku_applied_to == sku:
+                        sku_offers.append(offer)
         
+            print(sku, sku_offers)
+
             # order offers by price per unit
             sku_offers.sort(key=lambda x: x.offer_price/x.trigger_quantity)
                         
@@ -127,3 +134,4 @@ def checkout(skus):
         #     total_cost = min(total_cost_for_combo, total_cost)
 
         # return total_cost
+
