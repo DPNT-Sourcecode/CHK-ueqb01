@@ -25,12 +25,19 @@ def checkout(skus):
 
     for sku in sku_counts:
         purchased_quantity = sku_counts[sku]
-        offer_quantity = price_table[sku].offer_quantity
-        offer_price = price_table[sku].offer_price
+        
         basic_price = price_table[sku].price
-        basic_quantity = purchased_quantity % offer_quantity
+        offer_quantity = price_table[sku].offer_quantity
+        
+        sku_cost = None
 
-        sku_cost =  basic_quantity * basic_price + ((purchased_quantity - basic_quantity) / offer_quantity) * offer_price
+        if offer_quantity:
+            offer_price = price_table[sku].offer_price  
+            basic_quantity = purchased_quantity % offer_quantity          
+            sku_cost =  basic_quantity * basic_price + ((purchased_quantity - basic_quantity) / offer_quantity) * offer_price
+        else:
+            sku_cost = basic_price * purchased_quantity
+
 
         total_price += sku_cost
 
@@ -41,6 +48,7 @@ def checkout(skus):
 
 
    
+
 
 
 
