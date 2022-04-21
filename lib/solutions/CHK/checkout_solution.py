@@ -68,12 +68,10 @@ def checkout(skus):
             sku_offers.sort(key=lambda x: x.offer_price/x.trigger_quantity)
                         
             while quantity_remaining > 0:
-                print(quantity_remaining)
                 for offer in sku_offers:
                     if offer.offer_type == OfferType.LOWER_PRICE_OFFER and quantity_remaining >= offer.trigger_quantity:
                         total_cost = total_cost - (price_table[sku] * offer.trigger_quantity) + offer.offer_price
                         quantity_remaining -= offer.trigger_quantity
-                
                 break
 
         return total_cost
@@ -138,6 +136,7 @@ def checkout(skus):
         #     total_cost = min(total_cost_for_combo, total_cost)
 
         # return total_cost
+
 
 
 
