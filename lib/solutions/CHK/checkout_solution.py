@@ -27,7 +27,27 @@ def checkout(skus):
         'C': 20,
         'D': 15,
         'E': 40,
-        'F': 10
+        'F': 10,
+        'G': 20,
+        'H': 10,
+        'I': 35,
+        'J': 60,
+        'K': 80,
+        'L': 90,
+        'M': 15,
+        'N': 40,
+        'O': 10,
+        'P': 50,
+        'Q': 80,
+        'R': 50,
+        'S': 30,
+        'T': 20,
+        'U': 40,
+        'V': 50,
+        'W': 20,
+        'X': 90,
+        'Y': 10,
+        'Z': 50
     }
 
     offers = {
@@ -38,12 +58,47 @@ def checkout(skus):
 
         'B': [
             Offer(sku='B', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=2, offer_price=45, sku_applied_to='B'),
+            # 2E get one B free
             Offer(sku='B', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=2, offer_price=0, sku_applied_to='E')
         ],
 
         'F': [
+            # 2F get one F free
              Offer(sku='F', offer_type=OfferType.BUY_2_GET_1_FREE, trigger_quantity=3, offer_price=0, sku_applied_to='F')
-        ]
+        ],
+        'H': [
+            Offer(sku='H', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=5, offer_price=45, sku_applied_to='H'),
+            Offer(sku='H', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=10, offer_price=80, sku_applied_to='H'),
+        ],
+        'K': [
+            Offer(sku='K', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=2, offer_price=150, sku_applied_to='K'),
+        ],
+
+        'N': [
+            # 3N get one M free
+            Offer(sku='N', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=3, offer_price=0, sku_applied_to='M')
+        ],
+
+        'P': [
+            Offer(sku='P', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=5, offer_price=200, sku_applied_to='P'),
+        ],
+
+        'Q': [
+            Offer(sku='Q', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=3, offer_price=80, sku_applied_to='Q'),
+        ],
+
+        'R': [
+            # 3N get one M free
+            Offer(sku='R', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=3, offer_price=0, sku_applied_to='Q')
+        ],
+
+        'U': [
+            # 2F get one F free
+             Offer(sku='U', offer_type=OfferType.BUY_2_GET_1_FREE, trigger_quantity=3, offer_price=0, sku_applied_to='U')
+        ],
+
+
+
     }
     
     def calculate_total_cost(sku_counts):
