@@ -152,6 +152,8 @@ def checkout(skus):
             quantity_purchased = sku_counts[sku]
             total_cost += quantity_purchased * price_table[sku]
 
+        print(total_cost)
+
         # calculate reduction in cost
         for sku in sku_counts:
             if sku not in offers:
@@ -218,6 +220,8 @@ def checkout(skus):
 
                                 discount_applied = True
                                 break
+
+                        print(sku_quantities)
                         
                         if discount_applied:
                             for c in sku_quantities:
