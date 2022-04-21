@@ -119,20 +119,20 @@ def checkout(skus):
         ],
 
         # Group Offers
-        'S': Offer(sku='S', offer_type=OfferType.GROUP_OFFER,
-                  trigger_quantity=3, offer_price=45, sku_applied_to='S'),
+        'S': [Offer(sku='S', offer_type=OfferType.GROUP_OFFER,
+                  trigger_quantity=3, offer_price=45, sku_applied_to='S')],
         
-        'T': Offer(sku='T', offer_type=OfferType.GROUP_OFFER,
-                  trigger_quantity=3, offer_price=45, sku_applied_to='T'),
+        'T': [Offer(sku='T', offer_type=OfferType.GROUP_OFFER,
+                  trigger_quantity=3, offer_price=45, sku_applied_to='T')],
 
-         'X': Offer(sku='X', offer_type=OfferType.GROUP_OFFER,
-                  trigger_quantity=3, offer_price=45, sku_applied_to='X'),
+         'X': [Offer(sku='X', offer_type=OfferType.GROUP_OFFER,
+                  trigger_quantity=3, offer_price=45, sku_applied_to='X')],
 
-        'Y': Offer(sku='Y', offer_type=OfferType.GROUP_OFFER,
-                  trigger_quantity=3, offer_price=45, sku_applied_to='Y'),
+        'Y': [Offer(sku='Y', offer_type=OfferType.GROUP_OFFER,
+                  trigger_quantity=3, offer_price=45, sku_applied_to='Y')],
 
-        'Z': Offer(sku='Z', offer_type=OfferType.GROUP_OFFER,
-                  trigger_quantity=3, offer_price=45, sku_applied_to='Z'),
+        'Z': [Offer(sku='Z', offer_type=OfferType.GROUP_OFFER,
+                  trigger_quantity=3, offer_price=45, sku_applied_to='Z')],
 
 
     }
@@ -178,12 +178,14 @@ def checkout(skus):
 
                     elif offer.offer_type == OfferType.GROUP_OFFER:
                         bundle = []
-                        for sku in offer.group and sku in sku_counts and sku_counts[sku] > 0:
-                            bundle.append({sku: price_table[sku]})
+                        print(offer.group)
+                        for sku in offer.group:
+                            if sku in sku_counts and sku_counts[sku] > 0:
+                                bundle.append({sku: price_table[sku]})
                         
-                        bundle.sort(key=lambda k, v: v)
+                                # bundle.sort(key=lambda k, v: v) 
 
-                        print(bundle, price_table)
+                                print(bundle, price_table)
 
                     else:
                         break
@@ -192,4 +194,3 @@ def checkout(skus):
 
     # Solution
     return calculate_total_cost(Counter(skus))
-
