@@ -2,6 +2,20 @@
 # skus = unicode string
 def checkout(skus):
     from collections import Counter
+    from enum import Enum
+
+    class OfferType(Enum):
+        LOWER_PRICE_OFFER = 1
+        FREE_SKU_OFFER = 2
+
+    class Offer:
+        def __init__(self, sku: str, offer_type: 'OfferType', trigger_quantity: int, offer_price: int, sku_applied_to: str = None) -> None:
+            self.sku = sku
+            self.offer_type = offer_type
+            self.trigger_quantity = trigger_quantity
+            self.offer_price = offer_price
+            self.sku_applied_to = sku_applied_to
+
 
     class PriceData:
         def __init__(self, letter: str, price: int, offer_quantity: int = None, offer_price: int = None) -> None:
@@ -44,5 +58,6 @@ def checkout(skus):
 
 
    
+
 
 
