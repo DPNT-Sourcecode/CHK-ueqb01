@@ -31,12 +31,12 @@ def checkout(skus):
 
     offers = {
         'A': [
-            Offer(sku='A', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=3, offer_price=130, sku_applied_to='A'),
-            Offer(sku='A', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=5, offer_price=200, sku_applied_to='A'),
+            Offer(sku='A', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=3, offer_price=130/3, sku_applied_to='A'),
+            Offer(sku='A', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=5, offer_price=200/5, sku_applied_to='A'),
         ],
 
         'B': [
-            Offer(sku='B', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=2, offer_price=45, sku_applied_to='B'),
+            Offer(sku='B', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=2, offer_price=45/2, sku_applied_to='B'),
         ],
 
         'E': [
@@ -55,6 +55,8 @@ def checkout(skus):
             quantity_purchased = sku_counts[sku]
             total_cost += quantity_purchased * price_table[sku]
 
+        print(total_cost)
+
         quantity_remaining = quantity_purchased
 
         # calculate reduction in cost
@@ -70,10 +72,11 @@ def checkout(skus):
             while quantity_remaining > 0:
                 for offer in sku_offers:
                     if offer.offer_type == OfferType.LOWER_PRICE_OFFER and quantity_remaining >= offer.trigger_quantity:
-                        total_cost -= (price_table[sku] - offer.offer_price) * offer.trigger_quantity
+                        total_cost -= offer.offer_price
+                        print(total_cost)
                         quantity_remaining -= offer.trigger_quantity
-                else:
-                    break
+                
+                break
 
         print(total_cost)
         return total_cost
@@ -138,6 +141,7 @@ def checkout(skus):
         #     total_cost = min(total_cost_for_combo, total_cost)
 
         # return total_cost
+
 
 
 
