@@ -36,11 +36,8 @@ def checkout(skus):
 
         'B': [
             Offer(sku='B', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=2, offer_price=45, sku_applied_to='B'),
+            Offer(sku='B', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=2, offer_price=0, sku_applied_to='E')
         ],
-
-        'E': [
-            Offer(sku='E', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=2, offer_price=0, sku_applied_to='B')
-        ]
     }
     
     def calculate_total_cost(sku_counts):
@@ -61,13 +58,6 @@ def checkout(skus):
 
             sku_offers = offers[sku]
 
-            for c in offers:
-                for offer in offers[c]:
-                    if offer.sku_applied_to == sku:
-                        sku_offers.append(offer)
-        
-            print(sku, sku_offers)
-
             # order offers by price per unit
             sku_offers.sort(key=lambda x: x.offer_price/x.trigger_quantity)
                         
@@ -77,11 +67,11 @@ def checkout(skus):
                         total_cost = total_cost - (price_table[sku] * offer.trigger_quantity) + offer.offer_price
                         sku_counts[sku] -= offer.trigger_quantity
 
-                    elif offer.offer_type == OfferType.FREE_SKU_OFFER and sku_counts[sku] >= offer.trigger_quantity:
-                        if sku_counts[offer.sku_applied_to] > 0:
-                            total_cost = total_cost - (price_table[offer.sku_applied_to] * 1)
-                            sku_counts[sku] -= offer.trigger_quantity
-                            sku_counts[offer.sku_applied_to] -= 1
+                    elif offer.offer_type == OfferType.FREE_SKU_OFFER and sku_counts[offer.sku_applied_to] >= offer.trigger_quantity:
+                        if sku_counts[sku] > 0:
+                            total_cost = total_cost - (price_table[sku] * 1)
+                            sku_counts[offer.sku_applied_to] -= offer.trigger_quantity
+                            sku_counts[sku] -= 1
                 break
 
 
@@ -134,4 +124,5 @@ def checkout(skus):
         #     total_cost = min(total_cost_for_combo, total_cost)
 
         # return total_cost
+
 
