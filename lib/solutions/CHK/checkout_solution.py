@@ -88,9 +88,9 @@ def checkout(skus):
             Offer(sku='Q', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=3, offer_price=80, sku_applied_to='Q'),
         ],
 
-        'R': [
-            # 3N get one M free
-            Offer(sku='R', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=3, offer_price=0, sku_applied_to='Q')
+        'Q': [
+            # 3R get one Q free
+            Offer(sku='Q', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=3, offer_price=0, sku_applied_to='R')
         ],
 
         'U': [
@@ -122,6 +122,8 @@ def checkout(skus):
 
             sku_offers = offers[sku]
 
+            print(sku_offers)
+
             # order offers by price per unit
             sku_offers.sort(key=lambda x: x.offer_price/x.trigger_quantity)
                         
@@ -150,6 +152,7 @@ def checkout(skus):
     
     # Solution
     return calculate_total_cost(Counter(skus))
+
 
 
 
