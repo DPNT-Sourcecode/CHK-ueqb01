@@ -73,6 +73,7 @@ def checkout(skus):
                         sku_counts[sku] -= offer.trigger_quantity
 
                     elif offer.offer_type == OfferType.FREE_SKU_OFFER and sku_counts[offer.sku_applied_to] >= offer.trigger_quantity: 
+                        print('a')
                         total_cost = total_cost - price_table[sku]
                         sku_counts[offer.sku_applied_to] -= offer.trigger_quantity
                         sku_counts[sku] -= 1
