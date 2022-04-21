@@ -47,10 +47,20 @@ def checkout(skus):
             offer_combinations = list(itertools.product(*self.offers.values()))
 
             for combo in offer_combinations:
-                print(combo)
+                sku_to_offer_map = dict()
+                
+                for offer in combo:
+                    sku_to_offer_map[offer.sku] = offer
 
-            # for sku in self.sku_counts:
-            #     quantity_purchased = self.sku_counts[sku]
+
+                print(sku_to_offer_map)
+
+
+
+
+
+                # for sku in self.sku_counts:
+                #     quantity_purchased = self.sku_counts[sku]
 
             #     # check if offer applies to this sku
             #     offers_being_applied = dict()
@@ -84,5 +94,6 @@ def checkout(skus):
         #     basic_quantity = quantity_purchased % self.offer_quantity
         #     return basic_quantity * self.price + ((quantity_purchased - basic_quantity) / self.offer_quantity) * self.offer_price
    
+
 
 
