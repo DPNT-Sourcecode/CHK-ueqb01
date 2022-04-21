@@ -19,12 +19,13 @@ price_table = {
 # noinspection PyShadowingBuiltins,PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    letters = Counter(skus)
-    for letter in skus:
-        price = price_table[letter].offer_price
+    letter_counts = Counter(skus)
+    for letter in letter_counts:
+        purchased_quantity = letter_counts[letter]
 
 
 
 
    
+
 
