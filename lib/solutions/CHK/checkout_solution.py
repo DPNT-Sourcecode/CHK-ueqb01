@@ -187,9 +187,14 @@ def checkout(skus):
                         
                         bundle = sorted(bundle, key=lambda d: d['price'], reverse=True)
 
-                        print(bundle)
+                        for c in bundle:
+                            print(c)
 
-                        break
+
+
+
+
+
 
                     else:
                         break
@@ -198,6 +203,7 @@ def checkout(skus):
 
     # Solution
     return calculate_total_cost(Counter(skus))
+
 
 
 
