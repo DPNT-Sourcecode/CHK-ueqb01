@@ -60,22 +60,21 @@ def checkout(skus):
             if sku not in offers:
                 continue
 
-            quantity_remaining = sku_counts[sku]
-
             sku_offers = offers[sku]
         
             # order offers by price per unit
             sku_offers.sort(key=lambda x: x.offer_price/x.trigger_quantity)
                         
-            while quantity_remaining > 0:
+            while sku_counts[sku] > 0:
                 for offer in sku_offers:
-                    if offer.offer_type == OfferType.LOWER_PRICE_OFFER and quantity_remaining >= offer.trigger_quantity:
+                    if offer.offer_type == OfferType.LOWER_PRICE_OFFER and sku_counts[sku] >= offer.trigger_quantity:
                         total_cost = total_cost - (price_table[sku] * offer.trigger_quantity) + offer.offer_price
-                        quantity_remaining -= offer.trigger_quantity
+                        sku_counts[sku] -= offer.trigger_quantity
 
-                    elif offer.offer_type == OfferType.FREE_SKU_OFFER and quantity_remaining >= offer.trigger_quantity:
-                        total_cost = total_cost - (price_table[offer.sku_applied_to] * 1) + offer.offer_price
-                        quantity_remaining -= offer.trigger_quantity
+                    elif offer.offer_type == OfferType.FREE_SKU_OFFER and sku_counts[sku] >= offer.trigger_quantity:
+                        if sku_counts[offer.sku_applied_to] > 0:
+                            total_cost = total_cost - (price_table[offer.sku_applied_to] * 1)
+                            sku_counts[sku] -= offer.trigger_quantity
 
                 break
 
@@ -142,9 +141,3 @@ def checkout(skus):
         #     total_cost = min(total_cost_for_combo, total_cost)
 
         # return total_cost
-
-
-
-
-
-
