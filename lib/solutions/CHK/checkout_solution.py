@@ -1,5 +1,3 @@
-# noinspection PyShadowingBuiltins,PyUnusedLocal
-# skus = unicode string
 def checkout(skus):
     from collections import Counter
     from enum import Enum
@@ -94,8 +92,3 @@ def checkout(skus):
     sku_counts = Counter(skus)
     return calculate_total_cost(sku_counts)
    
-
-
-
-
-
