@@ -11,5 +11,9 @@ class TestSum():
     def test_multiple_sku(self):
         assert checkout('ABCD') == 115
 
+    
+    def test_multiple_offer(self):
+        assert checkout('AAABCD') == 195
+
 
 
