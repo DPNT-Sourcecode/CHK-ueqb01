@@ -1,7 +1,6 @@
 def checkout(skus):
     from collections import Counter
     from enum import Enum
-    from typing import Dict
     import itertools
 
     class OfferType(Enum):
@@ -89,6 +88,6 @@ def checkout(skus):
         return total_cost
     
     # Solution
-    sku_counts = Counter(skus)
-    return calculate_total_cost(sku_counts)
+    return calculate_total_cost(Counter(skus))
    
+
