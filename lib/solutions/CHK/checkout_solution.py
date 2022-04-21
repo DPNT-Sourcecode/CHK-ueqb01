@@ -4,6 +4,7 @@ def checkout(skus):
     from collections import Counter
     from enum import Enum
     from typing import List, Dict
+    import itertools
 
     class OfferType(Enum):
         LOWER_PRICE_OFFER = 1
@@ -26,19 +27,24 @@ def checkout(skus):
             'E': 40
         }
 
-        offers = [
-            Offer(sku='A', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=3, offer_price=130, sku_applied_to='A'),
-            Offer(sku='A', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=5, offer_price=200, sku_applied_to='A'),
-            Offer(sku='E', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=2, offer_price=None, sku_applied_to='B'),
-        ]
-
-
+        offers = {
+            'A': [
+                Offer(sku='A', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=3, offer_price=130, sku_applied_to='A'),
+                Offer(sku='A', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=5, offer_price=200, sku_applied_to='A'),
+            ],
+            'B': [
+                Offer(sku='E', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=2, offer_price=None, sku_applied_to='B')
+                ]
+        }
+        
         def __init__(self, sku_counts = Dict[str, int]) -> None:
             self.sku_counts = sku_counts 
 
 
         def calculate_total_cost(self):
             total_cost = 0
+
+            offer_combinations = list(itertools.product(*self.offers.items()))
 
             for sku in self.sku_counts:
                 quantity_purchased = self.sku_counts[sku]
@@ -83,4 +89,5 @@ def checkout(skus):
         #     basic_quantity = quantity_purchased % self.offer_quantity
         #     return basic_quantity * self.price + ((quantity_purchased - basic_quantity) / self.offer_quantity) * self.offer_price
    
+
 
