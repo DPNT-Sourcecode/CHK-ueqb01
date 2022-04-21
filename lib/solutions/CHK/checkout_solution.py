@@ -42,7 +42,7 @@ def checkout(skus):
 
 
         def calculate_total_cost(self):
-            total_cost = 0
+            total_cost = float('inf')
 
             offer_combinations = list(itertools.product(*self.offers.values()))
 
@@ -76,30 +76,20 @@ def checkout(skus):
                         if sku_offer.offer_type == OfferType.LOWER_PRICE_OFFER:
                             basic_quantity = quantity_purchased % sku_offer.trigger_quantity
                             total_costs_per_sku[sku] = basic_quantity * self.price_table[sku] + ((quantity_purchased - basic_quantity) / sku_offer.trigger_quantity) * sku_offer.offer_price
-                            
+                        
+                        elif sku_offer.offer_type == OfferType.FREE_SKU_OFFER:
+                            basic_quantity = quantity_purchased % sku_offer.trigger_quantity
+
+                            reduced_cost =  total_costs_per_sku[sku_offer.sku_applied_to] - ((quantity_purchased - basic_quantity) / sku_offer.trigger_quantity) * self.price_table[sku_offer.sku_applied_to]
+                            total_costs_per_sku[sku_offer.sku_applied_to] = max(reduced_cost, 0)
 
                 print(total_costs_per_sku)
+                           
+                # total_cost_for_combo = sum(total_costs_per_sku.items())
 
-
-
-
-
-            #     # check if offer applies to this sku
-            #     offers_being_applied = dict()
-
-            #     for offer in self.offers:
-            #         offers_being_applied[offer.sku] = offer
-
-            # for sku in sku_counts:
-            #     if sku not in price_table:
-            #         return -1
-
-            # for sku in sku_counts:
-            #     quantity_purchased = sku_counts[sku]
-            #     total_cost += price_table[sku].calculate_total_cost(quantity_purchased)
-        
-            # return total_cost
-
+                # total_cost = min(total_cost_for_combo, total_cost)
+            
+            return total_cost
     
     # Solution
     sku_counts = Counter(skus)
@@ -116,8 +106,3 @@ def checkout(skus):
         #     basic_quantity = quantity_purchased % self.offer_quantity
         #     return basic_quantity * self.price + ((quantity_purchased - basic_quantity) / self.offer_quantity) * self.offer_price
    
-
-
-
-
-
