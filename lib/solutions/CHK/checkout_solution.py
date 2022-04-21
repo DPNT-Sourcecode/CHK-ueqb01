@@ -84,14 +84,12 @@ def checkout(skus):
                         
                         elif sku_offer.offer_type == OfferType.FREE_SKU_OFFER:
                             basic_quantity = quantity_purchased % sku_offer.trigger_quantity
-                            total_costs_per_sku[sku_offer.sku_applied_to] -= ((quantity_purchased - basic_quantity) / sku_offer.trigger_quantity) * self.price_table[sku_offer.sku_applied_to]            
+                            total_costs_per_sku[sku_offer.sku_applied_to] -= ((quantity_purchased - basic_quantity) / sku_offer.trigger_quantity) * self.price_table[sku_offer.sku_applied_to]
+                            total_costs_per_sku[sku] += quantity_purchased * self.price_table[sku]      
                     else:
                         total_costs_per_sku[sku] += quantity_purchased * self.price_table[sku]
 
-
-                print(total_costs_per_sku)
-
-                total_cost_for_combo = sum(total_costs_per_sku.values())
+                total_cost_for_combo = sum(x if x >= 0 else 0 for x in total_costs_per_sku.values())
 
                 total_cost = min(total_cost_for_combo, total_cost)
 
