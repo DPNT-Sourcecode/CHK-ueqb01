@@ -5,6 +5,7 @@ def checkout(skus):
     class OfferType(Enum):
         LOWER_PRICE_OFFER = 1
         FREE_SKU_OFFER = 2
+        BUY_2_GET_1_FREE = 3
 
     class Offer:
         def __init__(self, sku: str, offer_type: 'OfferType', trigger_quantity: int, offer_price: int, sku_applied_to: str = None) -> None:
@@ -41,7 +42,7 @@ def checkout(skus):
         ],
 
         'F': [
-             Offer(sku='F', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=3, offer_price=0, sku_applied_to='F')
+             Offer(sku='F', offer_type=OfferType.BUY_2_GET_1_FREE, trigger_quantity=3, offer_price=0, sku_applied_to='F')
         ]
     }
     
@@ -55,9 +56,6 @@ def checkout(skus):
         for sku in sku_counts:
             quantity_purchased = sku_counts[sku]
             total_cost += quantity_purchased * price_table[sku]       
-
-
-        print(sku_counts)
 
         # calculate reduction in cost
         for sku in sku_counts:
@@ -79,6 +77,12 @@ def checkout(skus):
                         total_cost = total_cost - price_table[sku]
                         sku_counts[offer.sku_applied_to] -= offer.trigger_quantity
                         sku_counts[sku] -= 1
+
+                    elif offer.offer_type == OfferType.BUY_2_GET_1_FREE and sku_counts[offer.sku_applied_to] >= offer.trigger_quantity: 
+                        total_cost = total_cost - price_table[sku]
+                        sku_counts[offer.sku_applied_to] -= 2
+                        sku_counts[sku] -= 1
+                    
                     else:
                         break
 
@@ -88,4 +92,5 @@ def checkout(skus):
     
     # Solution
     return calculate_total_cost(Counter(skus))
+
 
