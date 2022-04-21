@@ -23,4 +23,11 @@ class TestSum():
     def test_special_offer(self):
         assert checkout('AAAEEB') == 210
 
+    def test_As(self):
+        assert checkout('AAAAAAAA') == 330
+
+    # def test_special_offer(self):
+    #     assert checkout('AAAAAAAA') == 210
+
+    
     
