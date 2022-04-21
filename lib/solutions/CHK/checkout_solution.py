@@ -1,9 +1,6 @@
-
-
 # noinspection PyShadowingBuiltins,PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-
     from collections import Counter
 
     class PriceData:
@@ -47,4 +44,5 @@ def checkout(skus):
 
 
    
+
 
