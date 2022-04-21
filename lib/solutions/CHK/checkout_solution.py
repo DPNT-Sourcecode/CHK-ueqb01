@@ -61,8 +61,8 @@ def checkout(skus):
             # order offers by price per unit
             sku_offers.sort(key=lambda x: x.offer_price/x.trigger_quantity)
                         
-            while sku_counts[sku] > 0:
-                for offer in sku_offers:
+            for offer in sku_offers:
+                while sku_counts[sku] > 0:
                     if offer.offer_type == OfferType.LOWER_PRICE_OFFER and sku_counts[sku] >= offer.trigger_quantity:
                         total_cost = total_cost - (price_table[sku] * offer.trigger_quantity) + offer.offer_price
                         sku_counts[sku] -= offer.trigger_quantity
@@ -72,7 +72,7 @@ def checkout(skus):
                             total_cost = total_cost - (price_table[sku] * 1)
                             sku_counts[offer.sku_applied_to] -= offer.trigger_quantity
                             sku_counts[sku] -= 1
-                break
+                    
 
 
         return total_cost
@@ -124,6 +124,7 @@ def checkout(skus):
         #     total_cost = min(total_cost_for_combo, total_cost)
 
         # return total_cost
+
 
 
 
