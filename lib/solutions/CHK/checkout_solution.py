@@ -25,23 +25,25 @@ price_table = {
 # noinspection PyShadowingBuiltins,PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    sku_counts = Counter(skus)
+    # sku_counts = Counter(skus)
 
-    total_cost = 0
+    # total_cost = 0
 
-    for sku in sku_counts:
-        quantity_purchased = sku_counts[sku]
-        total_cost += price_table[sku].calculate_total_cost(quantity_purchased)
+    # for sku in sku_counts:
+    #     if sku not in price_table:
+    #         return -1
+
+
+    # for sku in sku_counts:
+    #     quantity_purchased = sku_counts[sku]
+    #     total_cost += price_table[sku].calculate_total_cost(quantity_purchased)
         
-    return total_cost
+    # return total_cost
+
+    return -1
 
 
 
 
 
    
-
-
-
-
-

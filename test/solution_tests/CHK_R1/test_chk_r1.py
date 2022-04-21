@@ -14,6 +14,3 @@ class TestSum():
     
     def test_multiple_offer(self):
         assert checkout('AAABCD') == 195
-
-
-
