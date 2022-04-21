@@ -32,7 +32,12 @@ def checkout(skus):
                 Offer(sku='A', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=3, offer_price=130, sku_applied_to='A'),
                 Offer(sku='A', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=5, offer_price=200, sku_applied_to='A'),
             ],
+
             'B': [
+                Offer(sku='B', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=2, offer_price=45, sku_applied_to='B'),
+            ],
+
+            'E': [
                 Offer(sku='E', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=2, offer_price=None, sku_applied_to='B')
             ]
         }
@@ -86,6 +91,8 @@ def checkout(skus):
                     else:
                         total_costs_per_sku[sku] = quantity_purchased * self.price_table[sku]
 
+
+                print(total_costs_per_sku)
 
                 total_cost_for_combo = sum(total_costs_per_sku.values())
 
