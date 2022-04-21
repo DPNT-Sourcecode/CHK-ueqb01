@@ -97,8 +97,10 @@ def checkout(skus):
              Offer(sku='U', offer_type=OfferType.BUY_2_GET_1_FREE, trigger_quantity=3, offer_price=0, sku_applied_to='U')
         ],
 
-
-
+        'V': [
+            Offer(sku='V', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=2, offer_price=90, sku_applied_to='V'),
+            Offer(sku='V', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=3, offer_price=130, sku_applied_to='V'),
+        ],
     }
     
     def calculate_total_cost(sku_counts):
@@ -147,3 +149,4 @@ def checkout(skus):
     
     # Solution
     return calculate_total_cost(Counter(skus))
+
