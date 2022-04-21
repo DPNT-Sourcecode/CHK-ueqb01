@@ -41,7 +41,7 @@ def checkout(skus):
         ],
 
         'F': [
-             Offer(sku='F', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=2, offer_price=0, sku_applied_to='F')
+             Offer(sku='F', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=3, offer_price=0, sku_applied_to='F')
         ]
     }
     
@@ -81,51 +81,8 @@ def checkout(skus):
                         break
 
         return total_cost
-        # print(total_unadjusted_cost)
+        
 
     
     # Solution
     return calculate_total_cost(Counter(skus))
-   
- # for combo in offer_combinations:
-        #     total_cost_for_combo = 0
-
-        #     sku_to_offer_map = dict()
-            
-        #     for offer in combo:
-        #         sku_to_offer_map[offer.sku] = offer
-
-        #     total_costs_per_sku = {
-        #         'A': 0,
-        #         'B': 0,
-        #         'C': 0,
-        #         'D': 0,
-        #         'E': 0
-        #     }
-
-        #     # calculate total cost for each sku
-        #     for sku in sku_counts:
-        #         quantity_purchased = sku_counts[sku]
-
-        #         # check if offer applies to the sku
-        #         if sku in sku_to_offer_map:
-        #             if sku_counts[sku] == 0:
-        #                 continue
-
-        #             sku_offer = sku_to_offer_map[sku]
-                    
-        #             if sku_offer.offer_type == OfferType.LOWER_PRICE_OFFER:
-        #                 basic_quantity = quantity_purchased % sku_offer.trigger_quantity
-        #                 total_costs_per_sku[sku] += basic_quantity * price_table[sku] + ((quantity_purchased - basic_quantity) / sku_offer.trigger_quantity) * sku_offer.offer_price
-                    
-        #             elif sku_offer.offer_type == OfferType.FREE_SKU_OFFER:
-        #                 basic_quantity = quantity_purchased % sku_offer.trigger_quantity
-        #                 total_costs_per_sku[sku_offer.sku_applied_to] -= ((quantity_purchased - basic_quantity) / sku_offer.trigger_quantity) * price_table[sku_offer.sku_applied_to]
-        #                 total_costs_per_sku[sku] += quantity_purchased * price_table[sku]      
-        #         else:
-        #             total_costs_per_sku[sku] += quantity_purchased * price_table[sku]
-
-        #     total_cost_for_combo = sum(max(x, 0) for x in total_costs_per_sku.values())
-        #     total_cost = min(total_cost_for_combo, total_cost)
-
-        # return total_cost
