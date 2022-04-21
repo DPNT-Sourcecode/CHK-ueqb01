@@ -3,4 +3,12 @@
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    raise NotImplementedError()
+    letters = skus.split(' ')
+    for letter in skus:
+        print(letter)
+
+
+
+
+   
+
