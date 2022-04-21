@@ -1,3 +1,6 @@
+from collections import Counter
+
+
 class PriceData:
     def __init__(self, letter: str, price: int, offer_quantity: int = None, offer_price: int = None) -> None:
         self.letter = letter
@@ -16,11 +19,12 @@ price_table = {
 # noinspection PyShadowingBuiltins,PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    letters = list(skus)
+    letters = Counter(skus)
     for letter in skus:
-        print(letter)
+        price = price_table[letter].offer_price
 
 
 
 
    
+

@@ -1,6 +1,7 @@
-from solutions.CHK import checkout
+from solutions.CHK.checkout_solution import checkout
 
 
 class TestSum():
     def test_sum(self):
-        print(checkout('A'))
+        assert checkout('A') == 50
+
