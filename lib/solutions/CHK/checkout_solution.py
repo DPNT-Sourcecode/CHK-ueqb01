@@ -34,7 +34,7 @@ def checkout(skus):
         ],
 
         'E': [
-            Offer(sku='E', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=2, offer_price=None, sku_applied_to='B')
+            Offer(sku='E', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=2, offer_price=0, sku_applied_to='B')
         ]
     }
     
@@ -59,6 +59,9 @@ def checkout(skus):
             sku_offers = offers[sku]
         
             cost_reduction = 0
+
+
+
 
             while quantity_remaining > 0:
                 for offer in sku_offers:
