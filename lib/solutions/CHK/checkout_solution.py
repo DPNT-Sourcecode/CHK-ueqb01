@@ -78,7 +78,6 @@ def checkout(skus):
 
 
 
-
        
        
     
@@ -127,7 +126,3 @@ def checkout(skus):
         #     total_cost = min(total_cost_for_combo, total_cost)
 
         # return total_cost
-
-
-
-
