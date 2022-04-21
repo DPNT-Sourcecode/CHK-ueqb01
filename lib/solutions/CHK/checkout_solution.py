@@ -3,6 +3,7 @@
 def checkout(skus):
     from collections import Counter
     from enum import Enum
+    from typing import List
 
     class OfferType(Enum):
         LOWER_PRICE_OFFER = 1
@@ -16,13 +17,18 @@ def checkout(skus):
             self.offer_price = offer_price
             self.sku_applied_to = sku_applied_to
 
-
-    class PriceData:
+    class PriceTable:
         def __init__(self, letter: str, price: int, offer_quantity: int = None, offer_price: int = None) -> None:
-            self.letter = letter
-            self.price = price
-            self.offer_quantity = offer_quantity
-            self.offer_price = offer_price
+            self.price_table = {
+                'A': 50,
+                'B': 30,
+                'C': 20,
+                'D': 15
+            }
+
+
+
+
 
         def calculate_total_cost(self, quantity_purchased: int):
             if not self.offer_quantity or quantity_purchased < self.offer_quantity:
@@ -58,6 +64,7 @@ def checkout(skus):
 
 
    
+
 
 
 
