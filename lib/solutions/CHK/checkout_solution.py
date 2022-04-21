@@ -82,7 +82,7 @@ def checkout(skus):
                     else:
                         total_costs_per_sku[sku] += quantity_purchased * price_table[sku]
 
-                total_cost_for_combo = sum(x if x >= 0 else 0 for x in total_costs_per_sku.values())
+                total_cost_for_combo = sum(max(x, 0) for x in total_costs_per_sku.values())
                 total_cost = min(total_cost_for_combo, total_cost)
 
             return total_cost
@@ -92,4 +92,5 @@ def checkout(skus):
     # Solution
     return calculate_total_cost(Counter(skus))
    
+
 
