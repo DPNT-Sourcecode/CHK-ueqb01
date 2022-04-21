@@ -214,14 +214,13 @@ def checkout(skus):
                                     c = obj['sku']
                                     sku_counts[c] = 0
 
+                                for c in sku_quantities:
+                                    if sku_quantities[c] == 0:
+                                        continue
+                                    print(total_cost, c, price_table[c], sku_quantities[c])
+                                    total_cost -= price_table[c] * sku_quantities[c]
 
-                            for c in sku_quantities:
-                                if sku_quantities[c] == 0:
-                                    continue
-                                print(total_cost, c, price_table[c], sku_quantities[c])
-                                total_cost -= price_table[c] * sku_quantities[c]
-
-                            total_cost += 45
+                                total_cost += 45
 
                     else:
                         break
@@ -230,6 +229,7 @@ def checkout(skus):
 
     # Solution
     return calculate_total_cost(Counter(skus))
+
 
 
 
