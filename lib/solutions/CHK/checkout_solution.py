@@ -116,6 +116,24 @@ def checkout(skus):
             Offer(sku='V', offer_type=OfferType.LOWER_PRICE_OFFER,
                   trigger_quantity=3, offer_price=130, sku_applied_to='V'),
         ],
+
+        # Group Offers
+        'S': Offer(sku='S', offer_type=OfferType.GROUP_OFFER,
+                  trigger_quantity=3, offer_price=45, sku_applied_to='S'),
+        
+        'T': Offer(sku='T', offer_type=OfferType.GROUP_OFFER,
+                  trigger_quantity=3, offer_price=45, sku_applied_to='T'),
+
+         'X': Offer(sku='X', offer_type=OfferType.GROUP_OFFER,
+                  trigger_quantity=3, offer_price=45, sku_applied_to='X'),
+
+        'Y': Offer(sku='Y', offer_type=OfferType.GROUP_OFFER,
+                  trigger_quantity=3, offer_price=45, sku_applied_to='Y'),
+
+        'Z': Offer(sku='Z', offer_type=OfferType.GROUP_OFFER,
+                  trigger_quantity=3, offer_price=45, sku_applied_to='Z'),
+
+
     }
 
     def calculate_total_cost(sku_counts):
@@ -159,6 +177,15 @@ def checkout(skus):
                         sku_counts[offer.sku_applied_to] -= offer.x
                         sku_counts[sku] -= 1
 
+                    elif offer.offer_type == OfferType.BUY_X_GET_1_FREE:
+                        bundle = []
+                        for sku in offer.group and sku in sku_counts and sku_counts[sku] > 0:
+                            bundle.append({sku: price_table[sku]})
+
+
+
+
+
                     else:
                         break
 
@@ -166,3 +193,4 @@ def checkout(skus):
 
     # Solution
     return calculate_total_cost(Counter(skus))
+
