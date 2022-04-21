@@ -38,7 +38,7 @@ def checkout(skus):
         'N': 40,
         'O': 10,
         'P': 50,
-        'Q': 80,
+        'Q': 30,
         'R': 50,
         'S': 30,
         'T': 20,
@@ -149,4 +149,5 @@ def checkout(skus):
     
     # Solution
     return calculate_total_cost(Counter(skus))
+
 
