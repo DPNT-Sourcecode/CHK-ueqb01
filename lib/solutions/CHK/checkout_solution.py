@@ -34,7 +34,7 @@ def checkout(skus):
             ],
             'B': [
                 Offer(sku='E', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=2, offer_price=None, sku_applied_to='B')
-                ]
+            ]
         }
         
         def __init__(self, sku_counts = Dict[str, int]) -> None:
@@ -44,24 +44,19 @@ def checkout(skus):
         def calculate_total_cost(self):
             total_cost = 0
 
-            offer_combinations = list(itertools.product(*self.offers.items()))
+            offer_combinations = list(itertools.product(*self.offers.values()))
 
-            for sku in self.sku_counts:
-                quantity_purchased = self.sku_counts[sku]
+            for combo in offer_combinations:
+                print(combo)
 
-                # check if offer applies to this sku
-                offers_being_applied = dict()
+            # for sku in self.sku_counts:
+            #     quantity_purchased = self.sku_counts[sku]
 
-                for offer in self.offers:
-                    offers_being_applied[offer.sku] = offer
+            #     # check if offer applies to this sku
+            #     offers_being_applied = dict()
 
-
-
-
-
-
-
-
+            #     for offer in self.offers:
+            #         offers_being_applied[offer.sku] = offer
 
             # for sku in sku_counts:
             #     if sku not in price_table:
