@@ -30,7 +30,7 @@ def checkout(skus):
         basic_price = price_table[sku].price
         basic_quantity = purchased_quantity % offer_quantity
 
-        sku_cost =  basic_quantity * basic_price + (purchased_quantity - basic_quantity) * offer_price
+        sku_cost =  basic_quantity * basic_price + ((purchased_quantity - basic_quantity) / offer_quantity) * offer_price
 
         total_price += sku_cost
 
@@ -41,6 +41,7 @@ def checkout(skus):
 
 
    
+
 
 
 

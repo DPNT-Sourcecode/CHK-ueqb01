@@ -8,4 +8,8 @@ class TestSum():
     def test_single_sku_offer(self):
         assert checkout('AAA') == 130
 
+    def test_multiple_sku(self):
+        assert checkout('ABCD') == 115
+
+
 
