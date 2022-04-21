@@ -15,6 +15,12 @@ def checkout(skus):
             self.offer_price = offer_price
             self.sku_applied_to = sku_applied_to
 
+        def __str__(self) -> str:
+            return f'{self.sku}-{self.offer_price}-{self.trigger_quantity}'
+
+        def __repr__(self) -> str:
+            return self.__str__()
+
     price_table = {
         'A': 50,
         'B': 30,
@@ -58,10 +64,10 @@ def checkout(skus):
 
             sku_offers = offers[sku]
         
+            # order offers by price per unit
+            sku_offers.sort(key=lambda x: x.offer_price/x.trigger_quantity)
+                        
             cost_reduction = 0
-
-
-
 
             while quantity_remaining > 0:
                 for offer in sku_offers:
@@ -69,6 +75,11 @@ def checkout(skus):
                         quantity_adjusted = quantity_purchased - (quantity_purchased % offer.trigger_quantity)
                         cost_reduction += (price_table[sku] - offer.offer_price) * quantity_adjusted
                         quantity_remaining -= quantity_adjusted
+
+            total_unadjusted_cost -= cost_reduction
+
+
+        print(total_unadjusted_cost)
 
 
 
@@ -129,3 +140,4 @@ def checkout(skus):
         #     total_cost = min(total_cost_for_combo, total_cost)
 
         # return total_cost
+
