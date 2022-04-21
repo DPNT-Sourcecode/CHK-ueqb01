@@ -200,13 +200,18 @@ def checkout(skus):
                         for obj in bundle:
                             c = obj['sku']
                             while sku_counts[c] > 0 and count < 3:
-                                print(c, sku_counts)
+                                print(count, c, sku_counts)
                                 sku_quantities[c] += 1
                                 sku_counts[c] -= 1
                                 count += 1
+                            
+                            if count == 3:
+                                for obj in bundle:
+                                    c = obj['sku']
+                                    sku_counts[c] = 0
 
                         # print(bundle)
-                        # print(sku_quantities)
+                        print(sku_quantities)
                         break
 
 
@@ -220,6 +225,7 @@ def checkout(skus):
 
     # Solution
     return calculate_total_cost(Counter(skus))
+
 
 
 
