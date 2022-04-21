@@ -17,6 +17,7 @@ def checkout(skus):
             self.offer_price = offer_price
             self.sku_applied_to = sku_applied_to
             self.x = x
+            self.group = group
 
         def __str__(self) -> str:
             return f'{self.sku}-{self.offer_price}-{self.trigger_quantity}'
@@ -154,8 +155,6 @@ def checkout(skus):
 
             sku_offers = offers[sku]
 
-            print(sku_offers)
-
             # order offers by price per unit
             sku_offers.sort(key=lambda x: x.offer_price/x.trigger_quantity)
 
@@ -177,14 +176,14 @@ def checkout(skus):
                         sku_counts[offer.sku_applied_to] -= offer.x
                         sku_counts[sku] -= 1
 
-                    elif offer.offer_type == OfferType.BUY_X_GET_1_FREE:
+                    elif offer.offer_type == OfferType.GROUP_OFFER:
                         bundle = []
                         for sku in offer.group and sku in sku_counts and sku_counts[sku] > 0:
                             bundle.append({sku: price_table[sku]})
+                        
+                        bundle.sort(key=lambda k, v: v)
 
-
-
-
+                        print(bundle, price_table)
 
                     else:
                         break
