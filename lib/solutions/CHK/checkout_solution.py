@@ -45,7 +45,6 @@ def checkout(skus):
         def __init__(self, sku_counts = Dict[str, int]) -> None:
             self.sku_counts = sku_counts 
 
-
         def calculate_total_cost(self):
             total_cost = float('inf')
 
@@ -98,8 +97,9 @@ def checkout(skus):
     # Solution
     sku_counts = Counter(skus)
     price_table = PriceTable(sku_counts)
-    return 10 #price_table.calculate_total_cost()
+    return price_table.calculate_total_cost()
    
+
 
 
 
