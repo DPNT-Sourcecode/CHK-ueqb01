@@ -44,14 +44,14 @@ def checkout(skus):
         'P': 50,
         'Q': 30,
         'R': 50,
-        'S': 30,
+        'S': 20,
         'T': 20,
         'U': 40,
         'V': 50,
         'W': 20,
-        'X': 90,
-        'Y': 10,
-        'Z': 50
+        'X': 17,
+        'Y': 20,
+        'Z': 21
     }
 
     offers = {
@@ -148,6 +148,9 @@ def checkout(skus):
             quantity_purchased = sku_counts[sku]
             total_cost += quantity_purchased * price_table[sku]
 
+
+        print(total_cost)
+
         # calculate reduction in cost
         for sku in sku_counts:
             if sku not in offers:
@@ -205,18 +208,20 @@ def checkout(skus):
                                 sku_counts[c] -= 1
                                 count += 1
                             
+                            # once we have counted 3, simple set all other quantities to 0 to avoid processing them
                             if count == 3:
                                 for obj in bundle:
                                     c = obj['sku']
                                     sku_counts[c] = 0
 
-                        # print(bundle)
-                        print(sku_quantities)
-                        break
 
+                            for c in sku_quantities:
+                                if sku_quantities[c] == 0:
+                                    continue
+                                print(total_cost, c, price_table[c], sku_quantities[c])
+                                total_cost -= price_table[c] * sku_quantities[c]
 
-
-
+                            total_cost += 45
 
                     else:
                         break
@@ -225,6 +230,7 @@ def checkout(skus):
 
     # Solution
     return calculate_total_cost(Counter(skus))
+
 
 
 
