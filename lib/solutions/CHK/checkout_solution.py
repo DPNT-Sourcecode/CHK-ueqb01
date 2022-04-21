@@ -97,9 +97,8 @@ def checkout(skus):
     
     # Solution
     sku_counts = Counter(skus)
-
     price_table = PriceTable(sku_counts)
-
     return price_table.calculate_total_cost()
    
+
 
