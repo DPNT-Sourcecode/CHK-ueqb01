@@ -32,8 +32,8 @@ class TestSum():
     def test_4E_2B(self):
         assert checkout('EEEEBB') == 160
 
-    # def test_As(self):
-    #     assert checkout('AAAAAAAAAA') == 400
+    def test_As(self):
+        assert checkout('AAAAAAAAAA') == 400
 
     
     
