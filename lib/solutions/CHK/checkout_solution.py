@@ -49,7 +49,25 @@ def checkout(skus):
             quantity_purchased = sku_counts[sku]
             total_unadjusted_cost += quantity_purchased * price_table[sku]
 
-        print(total_unadjusted_cost)
+        quantity_remaining = quantity_purchased
+
+        # calculate reduction in cost
+        for sku in sku_counts:
+            if sku not in offers:
+                continue
+
+            sku_offers = offers[sku]
+        
+            cost_reduction = 0
+
+            while quantity_remaining > 0:
+                for offer in sku_offers:
+                    if offer.offer_type == OfferType.LOWER_PRICE_OFFER and quantity_remaining >= offer.trigger_quantity:
+                        quantity_adjusted = quantity_purchased - (quantity_purchased % offer.trigger_quantity)
+                        cost_reduction += (price_table[sku] - offer.offer_price) * quantity_adjusted
+                        quantity_remaining -= quantity_adjusted
+
+
 
 
 
@@ -109,6 +127,7 @@ def checkout(skus):
         #     total_cost = min(total_cost_for_combo, total_cost)
 
         # return total_cost
+
 
 
 
