@@ -90,4 +90,3 @@ def checkout(skus):
     # Solution
     return calculate_total_cost(Counter(skus))
    
-
