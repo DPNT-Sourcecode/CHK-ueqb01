@@ -82,13 +82,15 @@ def checkout(skus):
 
                             reduced_cost =  total_costs_per_sku[sku_offer.sku_applied_to] - ((quantity_purchased - basic_quantity) / sku_offer.trigger_quantity) * self.price_table[sku_offer.sku_applied_to]
                             total_costs_per_sku[sku_offer.sku_applied_to] = max(reduced_cost, 0)
-
-                print(total_costs_per_sku)
-                           
-                # total_cost_for_combo = sum(total_costs_per_sku.items())
-
-                # total_cost = min(total_cost_for_combo, total_cost)
             
+                    else:
+                        total_costs_per_sku[sku] = quantity_purchased * self.price_table[sku]
+
+
+                total_cost_for_combo = sum(total_costs_per_sku.values())
+
+                total_cost = min(total_cost_for_combo, total_cost)
+
             return total_cost
     
     # Solution
@@ -97,12 +99,4 @@ def checkout(skus):
     price_table = PriceTable(sku_counts)
 
     return price_table.calculate_total_cost()
-
-
-# def calculate_total_cost(self, quantity_purchased: int):
-        #     if not self.offer_quantity or quantity_purchased < self.offer_quantity:
-        #         return quantity_purchased * self.price
-
-        #     basic_quantity = quantity_purchased % self.offer_quantity
-        #     return basic_quantity * self.price + ((quantity_purchased - basic_quantity) / self.offer_quantity) * self.offer_price
    
