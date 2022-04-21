@@ -47,20 +47,37 @@ def checkout(skus):
             offer_combinations = list(itertools.product(*self.offers.values()))
 
             for combo in offer_combinations:
+                total_cost_for_combo = 0
+
                 sku_to_offer_map = dict()
                 
                 for offer in combo:
                     sku_to_offer_map[offer.sku] = offer
 
+                total_costs_per_sku = {
+                    'A': 0,
+                    'B': 0,
+                    'C': 0,
+                    'D': 0,
+                    'E': 0
+                }
 
-                print(sku_to_offer_map)
+                # calculate total cost for each sku
+                for sku in self.sku_counts:
+                    quantity_purchased = self.sku_counts[sku]
+
+                    # check if offer applies to the sku
+                    if sku in sku_to_offer_map:
+                        sku_offer = sku_to_offer_map[sku]
+                        if sku_offer.offer_type == OfferType.LOWER_PRICE_OFFER:
+                            basic_quantity = quantity_purchased % sku_offer.trigger_quantity
 
 
 
 
 
-                # for sku in self.sku_counts:
-                #     quantity_purchased = self.sku_counts[sku]
+
+
 
             #     # check if offer applies to this sku
             #     offers_being_applied = dict()
@@ -82,7 +99,7 @@ def checkout(skus):
     # Solution
     sku_counts = Counter(skus)
 
-    price_table = PriceTable(skus)
+    price_table = PriceTable(sku_counts)
 
     return price_table.calculate_total_cost()
 
@@ -94,6 +111,7 @@ def checkout(skus):
         #     basic_quantity = quantity_purchased % self.offer_quantity
         #     return basic_quantity * self.price + ((quantity_purchased - basic_quantity) / self.offer_quantity) * self.offer_price
    
+
 
 
 
