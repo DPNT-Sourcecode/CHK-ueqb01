@@ -177,7 +177,7 @@ def checkout(skus):
                         sku_counts[sku] -= 1
 
                     elif offer.offer_type == OfferType.GROUP_OFFER:
-                        bundle = {}
+                        bundle = []
                         for c in offer.group:
                             if c in sku_counts and sku_counts[c] > 0:
                                 bundle.append({
@@ -185,9 +185,9 @@ def checkout(skus):
                                     'price': price_table[c]
                                 })
                         
-                                sorted(bundle.items(), key=lambda d: d[1])
+                        bundle = sorted(bundle, key=lambda d: d['price'], reverse=True)
 
-                                print(bundle, price_table)
+                        print(bundle)
 
                         break
 
@@ -198,5 +198,6 @@ def checkout(skus):
 
     # Solution
     return calculate_total_cost(Counter(skus))
+
 
 
