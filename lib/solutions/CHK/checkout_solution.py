@@ -13,7 +13,7 @@ price_table = {
     'D': PriceData('D', 15),
 }
 
-# noinspection PyUnusedLocal
+# noinspection PyShadowingBuiltins,PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
     letters = list(skus)
@@ -24,5 +24,3 @@ def checkout(skus):
 
 
    
-
-
