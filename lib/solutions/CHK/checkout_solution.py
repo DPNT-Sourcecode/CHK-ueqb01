@@ -38,6 +38,10 @@ def checkout(skus):
             Offer(sku='B', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=2, offer_price=45, sku_applied_to='B'),
             Offer(sku='B', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=2, offer_price=0, sku_applied_to='E')
         ],
+
+        'F': [
+             Offer(sku='F', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=2, offer_price=0, sku_applied_to='F')
+        ]
     }
     
     def calculate_total_cost(sku_counts):

@@ -20,7 +20,7 @@ class TestSum():
     def test_special_offer(self):
         assert checkout('EEB') == 80
 
-    def test_special_2A_3B(self):
+    def test_2As_2Es_3Bs(self):
         assert checkout('AAAEEB') == 210
 
     def test_all_As(self):
@@ -34,6 +34,9 @@ class TestSum():
 
     def test_As(self):
         assert checkout('AAAAAAAAAA') == 400
+
+    def test_As(self):
+        assert checkout('FFF') == 20
 
     
     
