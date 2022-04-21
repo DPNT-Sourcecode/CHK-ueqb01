@@ -35,30 +35,32 @@ class TestSum():
     def test_AAAAAAAAAA(self):
         assert checkout('AAAAAAAAAA') == 400
 
-    def test_3Fs(self):
+    def test_FFF(self):
         assert checkout('FFF') == 20
 
-    def test_6Fs(self):
+    def test_FFFFFF(self):
         assert checkout('FFFFFF') == 40
 
-    def test_4Uss(self):
+    def test_UUUU(self):
         assert checkout('UUUU') == 120
 
-    
-    def test_3Rs_1Q(self):
+    def test_RRRQ(self):
         assert checkout('RRRQ') == 150
 
-    def test_4Rs_1Q(self):
+    def test_RRRRQ(self):
         assert checkout('RRRRQ') == 200
 
-    def test_6Rs_2Qs(self):
+    def test_RRRRRRQQ(self):
         assert checkout('RRRRRRQQ') == 300
 
-    def test_3Ns_1M(self):
+    def test_NNNM(self):
         assert checkout('NNNM') == 120
 
-    def test_3Qs(self):
+    def test_QQQ(self):
          assert checkout('QQQ') == 80
 
     def test_STXYZ(self):
          assert checkout('STXYZ') == 82
+
+    def test_SSS(self):
+         assert checkout('SSS') == 45
