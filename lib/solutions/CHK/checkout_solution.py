@@ -1,7 +1,6 @@
 def checkout(skus):
     from collections import Counter
     from enum import Enum
-    import itertools
 
     class OfferType(Enum):
         LOWER_PRICE_OFFER = 1
@@ -75,26 +74,13 @@ def checkout(skus):
                         if sku_counts[offer.sku_applied_to] > 0:
                             total_cost = total_cost - (price_table[offer.sku_applied_to] * 1)
                             sku_counts[sku] -= offer.trigger_quantity
-
+                            sku_counts[offer.sku_applied_to] -= 1
                 break
 
 
         return total_cost
         # print(total_unadjusted_cost)
 
-
-
-
-
-
-
-
-
-
-
-
-       
-       
     
     # Solution
     return calculate_total_cost(Counter(skus))
