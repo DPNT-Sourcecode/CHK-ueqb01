@@ -85,12 +85,9 @@ def checkout(skus):
         ],
 
         'Q': [
-            Offer(sku='Q', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=3, offer_price=80, sku_applied_to='Q'),
-        ],
-
-        'Q': [
             # 3R get one Q free
-            Offer(sku='Q', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=3, offer_price=0, sku_applied_to='R')
+            Offer(sku='Q', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=3, offer_price=0, sku_applied_to='R'),
+             Offer(sku='Q', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=3, offer_price=80, sku_applied_to='Q'),
         ],
 
         'U': [

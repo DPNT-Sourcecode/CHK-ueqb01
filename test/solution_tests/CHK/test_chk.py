@@ -56,3 +56,6 @@ class TestSum():
 
     def test_3Ns_1M(self):
         assert checkout('NNNM') == 120
+
+    def test_3Qs(self):
+         assert checkout('QQQ') == 80
