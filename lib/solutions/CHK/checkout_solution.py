@@ -68,12 +68,17 @@ def checkout(skus):
 
                     # check if offer applies to the sku
                     if sku in sku_to_offer_map:
+                        if self.sku_counts[sku] == 0:
+                            continue
+
                         sku_offer = sku_to_offer_map[sku]
+                        
                         if sku_offer.offer_type == OfferType.LOWER_PRICE_OFFER:
                             basic_quantity = quantity_purchased % sku_offer.trigger_quantity
+                            total_costs_per_sku[sku] = basic_quantity * self.price_table[sku] + ((quantity_purchased - basic_quantity) / sku_offer.trigger_quantity) * sku_offer.offer_price
+                            
 
-
-
+                print(total_costs_per_sku)
 
 
 
@@ -111,6 +116,7 @@ def checkout(skus):
         #     basic_quantity = quantity_purchased % self.offer_quantity
         #     return basic_quantity * self.price + ((quantity_purchased - basic_quantity) / self.offer_quantity) * self.offer_price
    
+
 
 
 
