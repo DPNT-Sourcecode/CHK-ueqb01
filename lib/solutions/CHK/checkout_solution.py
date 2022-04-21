@@ -201,6 +201,8 @@ def checkout(skus):
                             'Z': 0
                         }
 
+                        discount_applied = False
+
                         for obj in bundle:
                             c = obj['sku']
                             while sku_counts[c] > 0 and count < 3:
@@ -213,14 +215,17 @@ def checkout(skus):
                                 for obj in bundle:
                                     c = obj['sku']
                                     sku_counts[c] = 0
+
+                                discount_applied = True
                                 break
+                        
+                        if discount_applied:
+                            for c in sku_quantities:
+                                if sku_quantities[c] == 0:
+                                    continue
+                                total_cost -= price_table[c] * sku_quantities[c]
 
-                        for c in sku_quantities:
-                            if sku_quantities[c] == 0:
-                                continue
-                            total_cost -= price_table[c] * sku_quantities[c]
-
-                        total_cost += 45
+                            total_cost += 45
 
                     else:
                         break

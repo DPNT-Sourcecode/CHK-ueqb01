@@ -64,3 +64,6 @@ class TestSum():
 
     def test_SSS(self):
          assert checkout('SSS') == 45
+
+    def test_S(self):
+         assert checkout('S') == 20
