@@ -56,6 +56,9 @@ def checkout(skus):
             quantity_purchased = sku_counts[sku]
             total_cost += quantity_purchased * price_table[sku]       
 
+
+        print(sku_counts)
+
         # calculate reduction in cost
         for sku in sku_counts:
             if sku not in offers:
@@ -73,11 +76,9 @@ def checkout(skus):
                         sku_counts[sku] -= offer.trigger_quantity
 
                     elif offer.offer_type == OfferType.FREE_SKU_OFFER and sku_counts[offer.sku_applied_to] >= offer.trigger_quantity: 
-                        print('a')
                         total_cost = total_cost - price_table[sku]
                         sku_counts[offer.sku_applied_to] -= offer.trigger_quantity
                         sku_counts[sku] -= 1
-                    
                     else:
                         break
 
@@ -87,3 +88,4 @@ def checkout(skus):
     
     # Solution
     return calculate_total_cost(Counter(skus))
+
