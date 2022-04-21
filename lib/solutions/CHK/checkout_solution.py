@@ -61,23 +61,23 @@ def checkout(skus):
             # order offers by price per unit
             sku_offers.sort(key=lambda x: x.offer_price/x.trigger_quantity)
                         
-            for offer in sku_offers:
+            for i, offer in enumerate(sku_offers):
                 while sku_counts[sku] > 0:
                     
-                    print(sku_counts[offer.sku_applied_to], offer.trigger_quantity)
+                    print(i, '0', sku_counts[offer.sku_applied_to], offer.trigger_quantity, sku_counts[sku])
 
                     if offer.offer_type == OfferType.LOWER_PRICE_OFFER and sku_counts[sku] >= offer.trigger_quantity:
                         total_cost = total_cost - (price_table[sku] * offer.trigger_quantity) + offer.offer_price
                         sku_counts[sku] -= offer.trigger_quantity
 
                     elif offer.offer_type == OfferType.FREE_SKU_OFFER and sku_counts[offer.sku_applied_to] >= offer.trigger_quantity:
-                        print('a', sku_counts[offer.sku_applied_to], offer.trigger_quantity)
+                        print(i, 'a', sku_counts[offer.sku_applied_to], offer.trigger_quantity, sku_counts[sku])
                         total_cost = total_cost - price_table[sku]
                         sku_counts[offer.sku_applied_to] -= offer.trigger_quantity
-                        print('b', sku_counts[offer.sku_applied_to], offer.trigger_quantity)
+                        print(i, 'b', sku_counts[offer.sku_applied_to], offer.trigger_quantity, sku_counts[sku])
                         sku_counts[sku] -= 1
-                        print('c', sku_counts[offer.sku_applied_to], offer.trigger_quantity)
-                    break
+                        print(i, 'c', sku_counts[offer.sku_applied_to], offer.trigger_quantity, sku_counts[sku])
+                break
 
 
         return total_cost
