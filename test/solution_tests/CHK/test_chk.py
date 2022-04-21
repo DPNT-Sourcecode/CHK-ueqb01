@@ -45,5 +45,14 @@ class TestSum():
     #     assert checkout('UUUU') == 120
 
     
-    def test_4Uss(self):
+    def test_3Rs_1Q(self):
         assert checkout('RRRQ') == 150
+
+    def test_4Rs_1Q(self):
+        assert checkout('RRRRQ') == 200
+
+    def test_6Rs_2Qs(self):
+        assert checkout('RRRRRRQQ') == 300
+
+    def test_3Ns_1M(self):
+        assert checkout('NNNM') == 120

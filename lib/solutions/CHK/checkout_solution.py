@@ -75,9 +75,9 @@ def checkout(skus):
             Offer(sku='K', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=2, offer_price=150, sku_applied_to='K'),
         ],
 
-        'N': [
+        'M': [
             # 3N get one M free
-            Offer(sku='N', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=3, offer_price=0, sku_applied_to='M')
+            Offer(sku='M', offer_type=OfferType.FREE_SKU_OFFER, trigger_quantity=3, offer_price=0, sku_applied_to='N')
         ],
 
         'P': [
@@ -152,7 +152,3 @@ def checkout(skus):
     
     # Solution
     return calculate_total_cost(Counter(skus))
-
-
-
-
