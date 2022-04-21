@@ -29,7 +29,7 @@ class TestSum():
     # def test_double_2E(self):
     #     assert checkout('EE') == 80
 
-    def test_3E_2B(self):
+    def test_4E_2B(self):
         assert checkout('EEEEBB') == 160
 
     # def test_As(self):
@@ -37,3 +37,4 @@ class TestSum():
 
     
     
+

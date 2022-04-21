@@ -72,6 +72,8 @@ def checkout(skus):
                             total_cost = total_cost - (price_table[sku] * 1)
                             sku_counts[offer.sku_applied_to] -= offer.trigger_quantity
                             sku_counts[sku] -= 1
+                            if sku_counts[offer.sku_applied_to] <= 0:
+                                break
                 break
 
 
@@ -124,5 +126,6 @@ def checkout(skus):
         #     total_cost = min(total_cost_for_combo, total_cost)
 
         # return total_cost
+
 
 
