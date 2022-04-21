@@ -187,10 +187,26 @@ def checkout(skus):
                         
                         bundle = sorted(bundle, key=lambda d: d['price'], reverse=True)
 
-                        for c in bundle:
-                            print(c)
+                        count = 0
 
+                        sku_quantities = {
+                            'S': 0,
+                            'T': 0,
+                            'X': 0,
+                            'Y': 0,
+                            'Z': 0
+                        }
 
+                        for obj in bundle:
+                            c = obj['sku']
+                            while sku_counts[c] > 0 and count < 3:
+                                sku_quantities[c] += 1
+                                sku_counts[c] -= 1
+                                count += 1
+
+                        print(bundle)
+                        print(sku_quantities)
+                        break
 
 
 
@@ -203,6 +219,7 @@ def checkout(skus):
 
     # Solution
     return calculate_total_cost(Counter(skus))
+
 
 
 
