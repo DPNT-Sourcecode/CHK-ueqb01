@@ -36,7 +36,7 @@ def checkout(skus):
         'H': 10,
         'I': 35,
         'J': 60,
-        'K': 80,
+        'K': 70,
         'L': 90,
         'M': 15,
         'N': 40,
@@ -58,6 +58,7 @@ def checkout(skus):
         'A': [
             Offer(sku='A', offer_type=OfferType.LOWER_PRICE_OFFER,
                   trigger_quantity=3, offer_price=130, sku_applied_to='A'),
+            
             Offer(sku='A', offer_type=OfferType.LOWER_PRICE_OFFER,
                   trigger_quantity=5, offer_price=200, sku_applied_to='A'),
         ],
@@ -65,6 +66,7 @@ def checkout(skus):
         'B': [
             Offer(sku='B', offer_type=OfferType.LOWER_PRICE_OFFER,
                   trigger_quantity=2, offer_price=45, sku_applied_to='B'),
+            
             # 2E get one B free
             Offer(sku='B', offer_type=OfferType.FREE_SKU_OFFER,
                   trigger_quantity=2, offer_price=0, sku_applied_to='E')
@@ -78,12 +80,13 @@ def checkout(skus):
         'H': [
             Offer(sku='H', offer_type=OfferType.LOWER_PRICE_OFFER,
                   trigger_quantity=5, offer_price=45, sku_applied_to='H'),
+           
             Offer(sku='H', offer_type=OfferType.LOWER_PRICE_OFFER,
                   trigger_quantity=10, offer_price=80, sku_applied_to='H'),
         ],
         'K': [
             Offer(sku='K', offer_type=OfferType.LOWER_PRICE_OFFER,
-                  trigger_quantity=2, offer_price=150, sku_applied_to='K'),
+                  trigger_quantity=2, offer_price=120, sku_applied_to='K'),
         ],
 
         'M': [
@@ -101,6 +104,7 @@ def checkout(skus):
             # 3R get one Q free
             Offer(sku='Q', offer_type=OfferType.FREE_SKU_OFFER,
                   trigger_quantity=3, offer_price=0, sku_applied_to='R'),
+            
             Offer(sku='Q', offer_type=OfferType.LOWER_PRICE_OFFER,
                   trigger_quantity=3, offer_price=80, sku_applied_to='Q'),
         ],
@@ -225,3 +229,4 @@ def checkout(skus):
 
     # Solution
     return calculate_total_cost(Counter(skus))
+
