@@ -5,15 +5,16 @@ def checkout(skus):
     class OfferType(Enum):
         LOWER_PRICE_OFFER = 1
         FREE_SKU_OFFER = 2
-        BUY_2_GET_1_FREE = 3
+        BUY_X_GET_1_FREE = 3
 
     class Offer:
-        def __init__(self, sku: str, offer_type: 'OfferType', trigger_quantity: int, offer_price: int, sku_applied_to: str = None) -> None:
+        def __init__(self, sku: str, offer_type: 'OfferType', trigger_quantity: int, offer_price: int, sku_applied_to: str = None, x: int = None) -> None:
             self.sku = sku
             self.offer_type = offer_type
             self.trigger_quantity = trigger_quantity
             self.offer_price = offer_price
             self.sku_applied_to = sku_applied_to
+            self.x = x
 
         def __str__(self) -> str:
             return f'{self.sku}-{self.offer_price}-{self.trigger_quantity}'
@@ -64,7 +65,7 @@ def checkout(skus):
 
         'F': [
             # 2F get one F free
-             Offer(sku='F', offer_type=OfferType.BUY_2_GET_1_FREE, trigger_quantity=3, offer_price=0, sku_applied_to='F')
+             Offer(sku='F', offer_type=OfferType.BUY_X_GET_1_FREE, trigger_quantity=3, offer_price=0, sku_applied_to='F', x = 2)
         ],
         'H': [
             Offer(sku='H', offer_type=OfferType.LOWER_PRICE_OFFER, trigger_quantity=5, offer_price=45, sku_applied_to='H'),
@@ -94,7 +95,7 @@ def checkout(skus):
 
         'U': [
             # 2F get one F free
-             Offer(sku='U', offer_type=OfferType.BUY_2_GET_1_FREE, trigger_quantity=4, offer_price=0, sku_applied_to='U')
+             Offer(sku='U', offer_type=OfferType.BUY_X_GET_1_FREE, trigger_quantity=4, offer_price=0, sku_applied_to='U', x=3)
         ],
 
         'V': [
@@ -135,9 +136,9 @@ def checkout(skus):
                         sku_counts[offer.sku_applied_to] -= offer.trigger_quantity
                         sku_counts[sku] -= 1
 
-                    elif offer.offer_type == OfferType.BUY_2_GET_1_FREE and sku_counts[offer.sku_applied_to] >= offer.trigger_quantity: 
+                    elif offer.offer_type == OfferType.BUY_X_GET_1_FREE and sku_counts[offer.sku_applied_to] >= offer.trigger_quantity: 
                         total_cost = total_cost - price_table[sku]
-                        sku_counts[offer.sku_applied_to] -= 2
+                        sku_counts[offer.sku_applied_to] -= offer.x
                         sku_counts[sku] -= 1
                     
                     else:

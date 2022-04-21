@@ -41,5 +41,8 @@ class TestSum():
     def test_6Fs(self):
         assert checkout('FFFFFF') == 40
 
+    def test_3Fs(self):
+        assert checkout('UUUU') == 120
+
     
     
