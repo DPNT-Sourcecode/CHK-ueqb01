@@ -148,9 +148,6 @@ def checkout(skus):
             quantity_purchased = sku_counts[sku]
             total_cost += quantity_purchased * price_table[sku]
 
-
-        print(total_cost)
-
         # calculate reduction in cost
         for sku in sku_counts:
             if sku not in offers:
@@ -203,7 +200,6 @@ def checkout(skus):
                         for obj in bundle:
                             c = obj['sku']
                             while sku_counts[c] > 0 and count < 3:
-                                print(count, c, sku_counts)
                                 sku_quantities[c] += 1
                                 sku_counts[c] -= 1
                                 count += 1
@@ -213,14 +209,14 @@ def checkout(skus):
                                 for obj in bundle:
                                     c = obj['sku']
                                     sku_counts[c] = 0
+                                break
 
-                                for c in sku_quantities:
-                                    if sku_quantities[c] == 0:
-                                        continue
-                                    print(total_cost, c, price_table[c], sku_quantities[c])
-                                    total_cost -= price_table[c] * sku_quantities[c]
+                        for c in sku_quantities:
+                            if sku_quantities[c] == 0:
+                                continue
+                            total_cost -= price_table[c] * sku_quantities[c]
 
-                                total_cost += 45
+                        total_cost += 45
 
                     else:
                         break
@@ -229,12 +225,3 @@ def checkout(skus):
 
     # Solution
     return calculate_total_cost(Counter(skus))
-
-
-
-
-
-
-
-
-
