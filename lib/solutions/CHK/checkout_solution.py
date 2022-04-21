@@ -72,7 +72,13 @@ def checkout(skus):
                     if offer.offer_type == OfferType.LOWER_PRICE_OFFER and quantity_remaining >= offer.trigger_quantity:
                         total_cost = total_cost - (price_table[sku] * offer.trigger_quantity) + offer.offer_price
                         quantity_remaining -= offer.trigger_quantity
+
+                    elif offer.offer_type == OfferType.FREE_SKU_OFFER and quantity_remaining >= offer.trigger_quantity:
+                        total_cost = total_cost - (price_table[offer.sku_applied_to] * 1) + offer.offer_price
+                        quantity_remaining -= offer.trigger_quantity
+
                 break
+
 
         return total_cost
         # print(total_unadjusted_cost)
